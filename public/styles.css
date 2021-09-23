@@ -45,3 +45,14 @@ footer {
 footer p {
   color: #606060;
 }
+
+
+#title {
+  display: flex;
+  margin: 30px;
+  justify-content: space-around;
+}
+
+#title > h3 {
+  font-size: 1.6vw;
+}
