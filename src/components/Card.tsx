@@ -1,4 +1,11 @@
-function Card(props) {
+function Card(props: {
+  image: string
+  name: string
+  genres: string[]
+  country: string
+  runtime: number
+  rating: number
+}) {
   /** Get Modified Genres */
   function getGenres(genres: string[]): string {
     let modifiedGenres = "";
@@ -21,7 +28,7 @@ function Card(props) {
         className="first-card-el"
         src={
           props.image ||
-          "https://cdn.bookauthority.org/dist/images/book-cover-not-available.6b5a104fa66be4eec4fd16aebd34fe04.png" // no image available picture
+          "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png" // no image available picture
         }
         alt="cover"
       />

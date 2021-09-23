@@ -1,4 +1,4 @@
-export interface SerialI {
+export interface ShowI {
   id: number;
   url: string;
   name: string;

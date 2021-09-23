@@ -104,9 +104,14 @@ footer p {
   align-items: center;
 }
 
+.card:hover {
+  color: #0b0080;
+  transition: 0.6s;
+}
+
 .card > img {
   height: 90%;
-
+  border-radius: 5%;
 }
 
 .card > p {
