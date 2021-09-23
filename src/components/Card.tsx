@@ -1,14 +1,19 @@
 function Card(props) {
-  // Open array of genres
-  let actualGenres = "";
-  if (props.genres?.length) {
-    for (let i = 0; i < props.genres.length; i++) {
-      actualGenres += `${props.genres[i]},\n`;
+  /** Get Modified Genres */
+  function getGenres(genres: string[]): string {
+    let modifiedGenres = "";
+    // Open array of genres
+    if (genres?.length) {
+      for (let i = 0; i < genres.length; i++) {
+        modifiedGenres += `${genres[i]},\n`;
+      }
+      // Delete last comma
+      modifiedGenres = modifiedGenres.substring(0, modifiedGenres.length - 2);
     }
-    actualGenres = actualGenres.substring(0, actualGenres.length - 2)
+    return modifiedGenres;
   }
 
-  console.log("updatedGenres :>> ", actualGenres);
+  const genres = getGenres(props.genres);
 
   return (
     <div className="card">
@@ -16,12 +21,12 @@ function Card(props) {
         className="first-card-el"
         src={
           props.image ||
-          "https://cdn.bookauthority.org/dist/images/book-cover-not-available.6b5a104fa66be4eec4fd16aebd34fe04.png"
+          "https://cdn.bookauthority.org/dist/images/book-cover-not-available.6b5a104fa66be4eec4fd16aebd34fe04.png" // no image available picture
         }
-        alt="image"
+        alt="cover"
       />
       <p className="next-card-el">{props.name || "?"}</p>
-      <pre className="next-card-el">{actualGenres || "?"}</pre>
+      <pre className="next-card-el">{genres || "?"}</pre>
       <p className="next-card-el">{props.country || "?"}</p>
       <p className="next-card-el">{props.runtime || "?"}</p>
       <p className="next-card-el">{props.rating || "?"}</p>
