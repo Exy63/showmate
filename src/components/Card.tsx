@@ -32,11 +32,11 @@ function Card(props: {
         }
         alt="cover"
       />
-      <p className="next-card-el">{props.name || "?"}</p>
-      <pre className="next-card-el">{genres || "?"}</pre>
-      <p className="next-card-el">{props.country || "?"}</p>
-      <p className="next-card-el">{props.runtime || "?"}</p>
-      <p className="next-card-el">{props.rating || "?"}</p>
+      <p className="next-card-el">{props.name || "-"}</p>
+      <pre className="next-card-el">{genres || "-"}</pre>
+      <p className="next-card-el">{props.country || "-"}</p>
+      <p className="next-card-el">{props.runtime || "-"}</p>
+      <p className="next-card-el">{props.rating || "-"}</p>
     </div>
   );
 }
