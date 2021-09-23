@@ -5,36 +5,36 @@ import Title from "./Title";
 import Card from "./Card";
 import { ShowI } from "../interfaces";
 import axios, { AxiosResponse } from "axios";
+import CardCollection from "./CardCollection";
 
 function App() {
   const [showsData, setShows] = useState<ShowI[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [postPerPage, setPostPerPage] = useState<number>(50);
   const [page, setPage] = useState<number>(0);
   console.clear();
   console.log("showsData :>> ", showsData);
 
   useEffect(() => {
-    axios
-      .get<ShowI[]>('https://api.tvmaze.com/shows?page=' + page)
-      .then((response: AxiosResponse) => {
-        setShows(response.data);
-      });
+    const fetchShows = async () => {
+      setLoading(true);
+      const res: AxiosResponse<ShowI[]> = await  axios.get<ShowI[]>("https://api.tvmaze.com/shows?page=" + page)
+      setShows(res.data);
+      setLoading(false)
+    }
+
+    fetchShows();
   }, []);
+
+  console.log('object :>> ', showsData);
+
 
   return (
     <div>
       <Header />
       <Title />
-      {showsData.map((show) => (
-        <Card
-          key={show.id}
-          image={show.image.medium}
-          genres={show.genres}
-          name={show.name}
-          country={show.network?.country?.name || show.webChannel?.country?.name}
-          runtime={show.runtime}
-          rating={show.rating.average}
-        />
-      ))}
+      <CardCollection showsData={showsData} loading={loading}/>
       <Footer />
     </div>
   );
