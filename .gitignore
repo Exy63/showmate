@@ -10,6 +10,7 @@
 
 # production
 /build
+/jsBuild
 
 # misc
 .DS_Store
