@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
-import Test from "./components/App";
+import App from "./components/App";
 
-class App extends React.Component {
+class MovieMate extends React.Component {
   render() {
-    return <Test />;
+    return <App />;
   }
 }
 
-render(<App />, document.getElementById("root"));
+render(<MovieMate />, document.getElementById("root"));

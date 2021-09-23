@@ -18,6 +18,9 @@ header {
   margin: auto -16px;
   padding: 1vw 32px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 header img {
@@ -34,13 +37,11 @@ header h1 {
 }
 
 footer {
-  position: absolute;
   text-align: center;
-  bottom: 0;
   width: 100%;
-  margin: auto -16px;
-  padding: 1vw 32px;
-  height: 2.5rem;
+  margin: auto -1vw;
+  margin-top: 5vw;
+  padding: 1vw 2vw;
 }
 
 footer p {
@@ -50,10 +51,22 @@ footer p {
 
 #title {
   display: flex;
-  margin-top: 4vw;
+  margin-top: 2vw;
   justify-content: space-around;
+  margin-top: 12vw;
+  width: 100%;
 }
 
 #title > h3 {
   font-size: 1.6vw;
+}
+
+.card {
+  margin-top: 20vw;
+  background-color: #3021da;
+  height: 15vw;
+  width: 95%;
+  margin: auto;
+  margin-top: 4vw;
+  padding: 1vw 32px;
 }

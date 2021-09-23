@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Title from "./Title";
+import Card from "./Card";
 import { SerialI } from "../interfaces";
 import axios, { AxiosResponse } from "axios";
 
@@ -21,6 +22,9 @@ function App() {
     <div>
       <Header />
       <Title />
+      <Card />
+      <Card />
+      <Card />
       <Footer />
     </div>
   );
