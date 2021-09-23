@@ -1,10 +1,10 @@
 function Card(props: {
-  image: string
-  name: string
-  genres: string[]
-  country: string
-  runtime: number
-  rating: number
+  image: string;
+  name: string;
+  genres: string[];
+  country: string;
+  runtime: number;
+  rating: number;
 }) {
   /** Get Modified Genres */
   function getGenres(genres: string[]): string {
