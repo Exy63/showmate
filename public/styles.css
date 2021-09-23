@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-html {
+html, pre {
   font-family: "Montserrat", sans-serif;
 }
 body {
@@ -14,7 +14,7 @@ body {
 }
 
 header {
-  background-color: #3021da;
+  background-color: #0b0080;
   margin: auto -16px;
   padding: 1vw 32px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
@@ -52,21 +52,57 @@ footer p {
 #title {
   display: flex;
   margin-top: 2vw;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 12vw;
-  width: 100%;
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #title > h3 {
   font-size: 1.6vw;
 }
 
+.first-title-el {
+  margin-left: 5vw;
+  margin-right: 7vw;
+}
+
+.next-title-el {
+  width: 20%;
+  text-align: center;
+}
+
 .card {
-  margin-top: 20vw;
-  background-color: #3021da;
-  height: 15vw;
-  width: 95%;
-  margin: auto;
-  margin-top: 4vw;
-  padding: 1vw 32px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+  margin-top: 5vw;
+  width: 90%;
+  height: 20vw;
+  align-items: center;
+}
+
+.card > img {
+  height: 90%;
+
+}
+
+.card > p {
+  font-size: 1.3vw;
+}
+
+.card > pre {
+  font-size: 1.3vw;
+}
+
+.first-card-el {
+  margin-left: 1vw;
+  margin-right: 2.3vw;
+}
+
+.next-card-el {
+  width: 15%;
+  text-align: center;
 }
