@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 const Pagination = (props: {
   showsPerPage: number;
   totalShows: number;
@@ -16,7 +17,7 @@ const Pagination = (props: {
           <li key={number} className="page-item">
             <a
               onClick={() => props.paginate(number)}
-              href="!#"
+              href="#"
               className="page-link"
             >
               {number}

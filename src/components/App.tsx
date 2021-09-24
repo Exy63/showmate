@@ -13,7 +13,7 @@ function App() {
   const [showsData, setShows] = useState<ShowI[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [showsPerPage] = useState<number>(50);
+  const [showsPerPage] = useState<number>(20);
   const [ApiPage, setApiPage] = useState<number>(0);
 
   useEffect(() => {
