@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const CardCollection = (props: { showsData: ShowI[]; loading: boolean }) => {
   if (props.loading) {
-    return <h2 className="loading">Loading...</h2>;
+    return <img className='loading-gif' src="images/loading.gif" alt="loading" />
   }
 
   return (

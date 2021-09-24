@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import axios, { AxiosResponse } from "axios";
 // Interfaces
 import { ShowI } from "../interfaces";
@@ -13,8 +13,8 @@ function App() {
   const [showsData, setShows] = useState<ShowI[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [showsPerPage] = useState<number>(25);
-  const [ApiPage] = useState<number>(0);
+  const [showsPerPage] = useState<number>(50);
+  const [ApiPage, setApiPage] = useState<number>(0);
 
   useEffect(() => {
     const fetchShows = async () => {
@@ -47,7 +47,7 @@ function App() {
         totalShows={showsData.length}
         paginate={paginate}
       />
-      <Footer />
+      <Footer loading={loading}/>
     </div>
   );
 }

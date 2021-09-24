@@ -18,6 +18,20 @@ body {
   padding: 0 16px;
 }
 
+.loading-gif {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150;
+}
+
+.on-loading {
+  display: none;
+}
+
 /* 
 * header 
 */
@@ -32,35 +46,21 @@ header {
   top: 0;
 }
 
-header img {
-  width: 3.5vw;
-  padding-top: 10px;
+header > div > img {
+  width: 35px;
+  display: inline;
 }
 
-header h1 {
+header > h1 {
   color: #fff;
-  font-size: 3vw;
+  display: inline;
   font-family: "McLaren", cursive;
   font-weight: 200;
   margin: 0;
 }
 
-/* 
-* footer 
-*/
-
-footer {
-  text-align: center;
-  width: 100%;
-  margin: auto -1vw;
-  margin-top: 5vw;
-  padding: 1vw 2vw;
-  height: 60px;
-}
-
-footer p {
-  font-size: 1.3vw;
-  color: #606060;
+.logo {
+  display: inline;
 }
 
 /* 
@@ -69,9 +69,9 @@ footer p {
 
 #title {
   display: flex;
-  margin-top: 2vw;
   justify-content: space-between;
-  margin-top: 12vw;
+  /* margin-top: 10vw; */
+  margin-top: 150px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -154,13 +154,8 @@ footer p {
 * pagination 
 */
 
-.pag-bar {
-  align-items: center;
-  align-self: center;
-}
-
 .pagination {
-  margin-top: 30px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   display: -webkit-box;
@@ -243,4 +238,22 @@ footer p {
 .pagination-sm .page-item:last-child .page-link {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
+}
+
+/* 
+* footer 
+*/
+
+footer {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  margin-top: 3vw;
+  padding: 1vw 2vw;
+  height: 60px;
+}
+
+footer p {
+  font-size: 1.3vw;
+  color: #606060;
 }
