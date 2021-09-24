@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 // Interfaces
 import { ShowI } from "../interfaces";
@@ -47,7 +47,7 @@ function App() {
         totalShows={showsData.length}
         paginate={paginate}
       />
-      <Footer loading={loading}/>
+      <Footer loading={loading} />
     </div>
   );
 }

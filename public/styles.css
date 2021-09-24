@@ -70,7 +70,6 @@ header > h1 {
 #title {
   display: flex;
   justify-content: space-between;
-  /* margin-top: 10vw; */
   margin-top: 150px;
   width: 90%;
   margin-left: auto;

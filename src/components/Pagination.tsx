@@ -10,7 +10,7 @@ const Pagination = (props: {
   }
 
   return (
-    <nav className='pag-bar'>
+    <nav className="pag-bar">
       <ul className="pagination ">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
