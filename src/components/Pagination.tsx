@@ -16,9 +16,15 @@ const Pagination = (props: {
 
   const backPages = [5, 4, 3, 2, 1];
   const nextPages = [1, 2, 3, 4, 5];
+  
+  console.log('pageNumbers :>> ', pageNumbers);
+
+  if (pageNumbers.length === 0) {
+    return <div></div>
+  }
 
   return (
-    <nav>
+    <nav className='pag-bar'>
       <ul className="pagination">
         {/** BACK PAGE */}
         {start > 1 &&
