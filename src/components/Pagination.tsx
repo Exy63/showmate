@@ -3,7 +3,7 @@ const Pagination = (props: {
   showsPerPage: number;
   totalShows: number;
   paginate: Function;
-  addition: number
+  addition: number;
 }) => {
   const pageNumbers: number[] = [];
 
@@ -11,18 +11,29 @@ const Pagination = (props: {
     pageNumbers.push(i + props.addition);
   }
 
+  const start = pageNumbers[0]; // start page
+  const end = pageNumbers[pageNumbers.length - 1]; // end page
+
+  const backPages = [5, 4, 3, 2, 1];
+  const nextPages = [1, 2, 3, 4, 5];
+
   return (
     <nav>
       <ul className="pagination">
-        {pageNumbers.length !== 0 && pageNumbers[0] !== 1 && <li key={pageNumbers[0] - 1} className="page-item">
-          <a
-            onClick={() => props.paginate(pageNumbers[0] - 1)}
-            href="#"
-            className="page-link"
-          >
-            {pageNumbers[0] - 1}
-          </a>
-        </li>}
+        {/** BACK PAGE */}
+        {start > 1 &&
+          backPages.map((subtrahend) => (
+            <li key={start - subtrahend} className="page-item">
+              <a
+                onClick={() => props.paginate(start - subtrahend)}
+                href="#"
+                className="page-link"
+              >
+                {start - subtrahend}
+              </a>
+            </li>
+          ))}
+        {/** CURRENT PAGE */}
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <a
@@ -34,15 +45,18 @@ const Pagination = (props: {
             </a>
           </li>
         ))}
-        <li key={pageNumbers[pageNumbers.length - 1] + 1} className="page-item">
-          <a
-            onClick={() => props.paginate(pageNumbers[pageNumbers.length - 1] + 1)}
-            href="#"
-            className="page-link"
-          >
-            {pageNumbers[pageNumbers.length - 1] + 1}
-          </a>
-        </li>
+        {/** NEXT PAGE */}
+        {nextPages.map((term) => (
+          <li key={end + term} className="page-item">
+            <a
+              onClick={() => props.paginate(end + term)}
+              href="#"
+              className="page-link"
+            >
+              {end + term}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );
