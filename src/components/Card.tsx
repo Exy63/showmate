@@ -24,13 +24,7 @@ function Card(props: {
 
   return (
     <div className="card">
-      <img
-        className="first-card-el"
-        src={
-          props.image
-        }
-        alt="cover"
-      />
+      <img className="first-card-el" src={props.image} alt="cover" />
       <p className="next-card-el">{props.name || "-"}</p>
       <pre className="next-card-el">{genres || "-"}</pre>
       <p className="next-card-el">{props.country || "-"}</p>

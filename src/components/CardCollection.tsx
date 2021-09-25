@@ -13,7 +13,8 @@ const CardCollection = (props: { data: ShowI[]; loadingStatus: boolean }) => {
       {props.data.map((show) => (
         <Card
           key={show.id}
-          image={show.image?.medium  ||
+          image={
+            show.image?.medium ||
             "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png" // no image available picture
           }
           genres={show.genres}

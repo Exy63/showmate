@@ -20,17 +20,16 @@ function App() {
   const [UserPage, setUserPage] = useState<number>(1); // Страница пользователя
   const [addition, setAddition] = useState<number>(0); // Добавочное число к страницам
 
-
   // VARIABLES
   const URL = `https://api.tvmaze.com/shows?page=${ApiPage}`;
   const firstIndex = UserPage * showsPerPage - showsPerPage;
   const lastIndex = UserPage * showsPerPage;
-  const UserData = (ApiData.slice(firstIndex, lastIndex));
+  const UserData = ApiData.slice(firstIndex, lastIndex);
 
   // FUNCTIONS
 
-  /** 
-   * Get Data 
+  /**
+   * Get Data
    * */
   useEffect(() => {
     const fetchShows = async () => {
@@ -42,35 +41,34 @@ function App() {
     fetchShows();
   }, [URL, ApiPage]);
 
-
-/** 
- * Change UserPage 
- * */
-function paginate(page: number) {
-  if (page > 5) {    
-    do {
-      page = page - 5
-    } while (page > 5)
-  }
+  /**
+   * Change UserPage
+   * */
+  function paginate(page: number) {
+    if (page > 5) {
+      do {
+        page = page - 5;
+      } while (page > 5);
+    }
     setUserPage(page);
   }
 
-/** 
- * Change ApiPage 
- * */
-function paginateApi(page: number) {
-  setApiData([])
-  setUserPage(1)
-  setApiPage(ApiPage + page);
-  if (page === -1) {
-    setAddition(addition - 5)
+  /**
+   * Change ApiPage
+   * */
+  function paginateApi(page: number) {
+    setApiData([]);
+    setUserPage(1);
+    setApiPage(ApiPage + page);
+    if (page === -1) {
+      setAddition(addition - 5);
+    }
+    if (page === 1) {
+      setAddition(addition + 5);
+    }
   }
-  if (page === 1) {
-    setAddition(addition + 5)
-  }
-}
 
-// RETURN
+  // RETURN
 
   return (
     <div>
