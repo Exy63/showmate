@@ -27,8 +27,7 @@ function Card(props: {
       <img
         className="first-card-el"
         src={
-          props.image ||
-          "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png" // no image available picture
+          props.image
         }
         alt="cover"
       />

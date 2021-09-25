@@ -9,38 +9,45 @@ import CardCollection from "./CardCollection";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
 
+const showsPerPage = 50;  // Количество на странице
+
 function App() {
-  const [showsData, setShows] = useState<ShowI[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [showsPerPage] = useState<number>(50);
-  const [ApiPage, setApiPage] = useState<number>(0);
-  const [addition, setAddition] = useState<number>(0);
+  const [showsData, setShowsData] = useState<ShowI[]>([]);  // Все данные по шоу
+  const [loading, setLoading] = useState<boolean>(false);   // Состояние загрузки
+  const [ApiPage, setApiPage] = useState<number>(0);    // Страница в АПИ
+  const [currentPage, setCurrentPage] = useState<number>(1);  // Текущая страница пользователя
+  const [addition, setAddition] = useState<number>(0);  // Добавочное число к страницам
+
+  const URL =  `https://api.tvmaze.com/shows?page=${ApiPage}`;
+
+  console.clear()
 
   /** GET SHOWS DATA */
   useEffect(() => {
-    const fetchShows = async (page: number) => {
+    const fetchShows = async () => {
       setLoading(true);
-      const res: AxiosResponse<ShowI[]> = await axios.get<ShowI[]>(
-        "https://api.tvmaze.com/shows?page=" + page
-      );
-      setShows(res.data);
+    // console.log('URL :>> ', URL);
+      const res: AxiosResponse<ShowI[]> = await axios.get<ShowI[]>(URL);
+      setShowsData(res.data);
       setLoading(false);
     };
+    fetchShows();
 
-    fetchShows(ApiPage);
-  }, []);
+  }, [ApiPage]);
 
   /** Получить ApiPage по номеру страницы */
   function getApiPageByPickedPage(pickedPage: number) {
-    let apiPage = Math.floor(((pickedPage - 1) * 50) / 250);
+    let apiPage = Math.floor(((pickedPage - 1) * showsPerPage) / 250);
     return apiPage;
   }
 
   // Get current shows
-  const indexOfLastShow = currentPage * showsPerPage;
-  const indexOfFirstShow = indexOfLastShow - showsPerPage;
-  const currentShows = showsData.slice(indexOfFirstShow, indexOfLastShow);
+  // const indexOfLastShow = currentPage * showsPerPage;
+  // const indexOfFirstShow = indexOfLastShow - showsPerPage;
+  // const currentShows = showsData.slice(indexOfFirstShow, indexOfLastShow);
+  function getUserPage(pageNumber) {
+      const indexOfFirstShow = 1 - pageNumber;
+  }
 
   /** Change page */
   const paginate = (pageNumber: number) => {
@@ -58,7 +65,8 @@ function App() {
       if (oldApiPage < currentApiPage) {
         setAddition(addition + 5);
       }
-      setApiPage(currentApiPage);
+      setShowsData([]) // сбрасываем шоу из стора
+      setApiPage(currentApiPage); // меняем страницу
     }
   };
 
@@ -66,7 +74,7 @@ function App() {
     <div>
       <Header />
       <Title />
-      <CardCollection showsData={currentShows} loading={loading} />
+      <CardCollection showsData={showsData} loading={loading} />
       <Pagination
         showsPerPage={showsPerPage}
         totalShows={showsData.length}
