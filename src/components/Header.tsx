@@ -1,4 +1,6 @@
 function Header() {
+  const year = new Date().getFullYear();
+
   return (
     <header>
       <div className="logo">
@@ -9,7 +11,7 @@ function Header() {
         />
       </div>
       <h1> ShowMate</h1>
-      <h3 className='info'>Best TV Shows of 2021 and All Time</h3>
+      <h3 className="info">Best TV Shows of {year} and All Time</h3>
     </header>
   );
 }
