@@ -1,8 +1,8 @@
 import { ShowI } from "../interfaces";
 import Card from "./Card";
 
-const CardCollection = (props: { showsData: ShowI[]; loading: boolean }) => {
-  if (props.loading) {
+const CardCollection = (props: { data: ShowI[]; loadingStatus: boolean }) => {
+  if (props.loadingStatus) {
     return (
       <img className="loading-gif" src="images/loading.gif" alt="loading" />
     );
@@ -10,10 +10,10 @@ const CardCollection = (props: { showsData: ShowI[]; loading: boolean }) => {
 
   return (
     <div>
-      {props.showsData.map((show) => (
+      {props.data.map((show) => (
         <Card
           key={show.id}
-          image={show.image.medium  ||
+          image={show.image?.medium  ||
             "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png" // no image available picture
           }
           genres={show.genres}

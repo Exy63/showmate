@@ -1,23 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const Pagination = (props: {
-  showsPerPage: number;
-  totalShows: number;
-  paginate: Function;
+  itemsPerPage: number;
+  totalItems: number;
+  trigger: Function;
+  mainTrigger: Function;
   addition: number;
 }) => {
   const pageNumbers: number[] = [];
 
-  for (let i = 1; i <= Math.ceil(props.totalShows / props.showsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(props.totalItems / props.itemsPerPage); i++) {
     pageNumbers.push(i + props.addition);
   }
 
   const start = pageNumbers[0]; // start page
   const end = pageNumbers[pageNumbers.length - 1]; // end page
 
-  const backPages = [5, 4, 3, 2, 1];
-  const nextPages = [1, 2, 3, 4, 5];
-  
-  console.log('pageNumbers :>> ', pageNumbers);
 
   if (pageNumbers.length === 0) {
     return <div></div>
@@ -27,23 +24,23 @@ const Pagination = (props: {
     <nav className='pag-bar'>
       <ul className="pagination">
         {/** BACK PAGE */}
-        {start > 1 &&
-          backPages.map((subtrahend) => (
-            <li key={start - subtrahend} className="page-item">
+        {
+        start > 1 &&
+            <li key={start - 1} className="page-item">
               <a
-                onClick={() => props.paginate(start - subtrahend)}
+                onClick={() => props.mainTrigger(-1)}
                 href="#"
                 className="page-link"
               >
-                {start - subtrahend}
+              {start - 1}
               </a>
             </li>
-          ))}
+          }
         {/** CURRENT PAGE */}
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <a
-              onClick={() => props.paginate(number)}
+              onClick={() => props.trigger(number)}
               href="#"
               className="page-link"
             >
@@ -52,17 +49,15 @@ const Pagination = (props: {
           </li>
         ))}
         {/** NEXT PAGE */}
-        {nextPages.map((term) => (
-          <li key={end + term} className="page-item">
+          <li key={end + 1} className="page-item">
             <a
-              onClick={() => props.paginate(end + term)}
+              onClick={() => {props.mainTrigger(1)}}
               href="#"
               className="page-link"
             >
-              {end + term}
+            {end + 1}
             </a>
           </li>
-        ))}
       </ul>
     </nav>
   );
