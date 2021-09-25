@@ -56,7 +56,17 @@ header > h1 {
   display: inline;
   font-family: "McLaren", cursive;
   font-weight: 200;
-  margin: 0;
+  margin: auto;
+}
+
+header > h3 {
+  float: right;
+  color: #fff;
+  display: inline;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  margin-top: 10px;
+  margin-right: 30px;
 }
 
 .logo {

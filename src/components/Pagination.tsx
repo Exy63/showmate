@@ -35,7 +35,7 @@ const Pagination = (props: {
             </a>
           </li>
         )}
-        {/** CURRENT PAGE */}
+        {/** CURRENT PAGES */}
         {pageNumbers.map((number, index) =>
           index === props.idHighlight - 1 ? (
             <li key={number} className="page-item">

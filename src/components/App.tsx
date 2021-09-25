@@ -57,14 +57,16 @@ function App() {
    * Change ApiPage
    * */
   function paginateApi(page: number) {
-    setApiData([]);
-    setUserPage(1);
-    setApiPage(ApiPage + page);
+    setApiData([]); // Очистка данных
+    setApiPage(ApiPage + page); // Переключение страницы в API
+    // Обработка данных для страницы
     if (page === -1) {
-      setAddition(addition - 5);
+      setAddition(addition - 5); 
+      setUserPage(5)
     }
     if (page === 1) {
       setAddition(addition + 5);
+      setUserPage(1);
     }
   }
 

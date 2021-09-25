@@ -9,6 +9,7 @@ function Header() {
         />
       </div>
       <h1> ShowMate</h1>
+      <h3 className='info'>Best TV Shows of 2021 and All Time</h3>
     </header>
   );
 }
