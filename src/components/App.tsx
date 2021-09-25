@@ -1,3 +1,4 @@
+// Packages
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 // Interfaces
@@ -12,16 +13,15 @@ import Footer from "./Footer";
 const showsPerPage = 50; // Количество на странице
 
 function App() {
+  // HOOKS
   const [ApiData, setApiData] = useState<ShowI[]>([]); // Все данные с АПИ
   const [loading, setLoading] = useState<boolean>(false); // Состояние загрузки
   const [ApiPage, setApiPage] = useState<number>(0); // Страница в АПИ
-
-
-  const [UserPage, setUserPage] = useState<number>(1); // Текущая страница пользователя
+  const [UserPage, setUserPage] = useState<number>(1); // Страница пользователя
   const [addition, setAddition] = useState<number>(0); // Добавочное число к страницам
 
 
-  // CONSTS
+  // VARIABLES
   const URL = `https://api.tvmaze.com/shows?page=${ApiPage}`;
   const firstIndex = UserPage * showsPerPage - showsPerPage;
   const lastIndex = UserPage * showsPerPage;
@@ -29,7 +29,9 @@ function App() {
 
   // FUNCTIONS
 
-  /** GET DATA FROM API*/
+  /** 
+   * Get Data 
+   * */
   useEffect(() => {
     const fetchShows = async () => {
       setLoading(true);
@@ -41,21 +43,21 @@ function App() {
   }, [URL, ApiPage]);
 
 
-// Change UserPage
+/** 
+ * Change UserPage 
+ * */
 function paginate(page: number) {
-  
-  console.log('page before :>> ', page);
-
   if (page > 5) {    
     do {
       page = page - 5
     } while (page > 5)
   }
-  console.log('page after :>> ', page);
     setUserPage(page);
   }
 
-// Change ApiPage
+/** 
+ * Change ApiPage 
+ * */
 function paginateApi(page: number) {
   setApiData([])
   setUserPage(1)
@@ -68,12 +70,7 @@ function paginateApi(page: number) {
   }
 }
 
-// console.log('ApiData :>> ', ApiData);
-// console.log('ApiPage :>> ', ApiPage);
-// console.log('UserData :>> ', UserData);
-// console.log('UserPage :>> ', UserPage);
-
-
+// RETURN
 
   return (
     <div>
@@ -86,6 +83,7 @@ function paginateApi(page: number) {
         trigger={paginate}
         mainTrigger={paginateApi}
         addition={addition}
+        idHighlight={UserPage}
       />
       <Footer loadingStatus={loading} />
     </div>

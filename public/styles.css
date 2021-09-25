@@ -239,6 +239,16 @@ header > h1 {
   border-bottom-right-radius: 0.2rem;
 }
 
+.hightlited-page {
+  color: #fff;
+  background-color: #0b0080;
+}
+
+.hightlited-page:hover {
+  color: #fff;
+  background-color: #1c1472;
+}
+
 /* 
 * footer 
 */
