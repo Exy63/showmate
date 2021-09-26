@@ -61,8 +61,8 @@ function App() {
     setApiPage(ApiPage + page); // Переключение страницы в API
     // Обработка данных для страницы
     if (page === -1) {
-      setAddition(addition - 5); 
-      setUserPage(5)
+      setAddition(addition - 5);
+      setUserPage(5);
     }
     if (page === 1) {
       setAddition(addition + 5);
