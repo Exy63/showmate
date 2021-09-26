@@ -1,29 +1,75 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 const Pagination = (props: {
-  showsPerPage: number;
-  totalShows: number;
-  paginate: Function;
+  itemsPerPage: number;
+  totalItems: number;
+  trigger: Function;
+  mainTrigger: Function;
+  addition: number;
+  idHighlight: number;
 }) => {
   const pageNumbers: number[] = [];
 
-  for (let i = 1; i <= Math.ceil(props.totalShows / props.showsPerPage); i++) {
-    pageNumbers.push(i);
+  for (let i = 1; i <= Math.ceil(props.totalItems / props.itemsPerPage); i++) {
+    pageNumbers.push(i + props.addition);
+  }
+
+  const start = pageNumbers[0]; // start page
+  const end = pageNumbers[pageNumbers.length - 1]; // end page
+
+  if (pageNumbers.length === 0) {
+    return <div></div>;
   }
 
   return (
     <nav className="pag-bar">
-      <ul className="pagination ">
-        {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
+      <ul className="pagination">
+        {/** BACK PAGE */}
+        {start > 1 && (
+          <li key={start - 1} className="page-item">
             <a
-              onClick={() => props.paginate(number)}
-              href="#"
+              onClick={() => props.mainTrigger(-1)}
+              href="/#"
               className="page-link"
             >
-              {number}
+              {start - 1}
             </a>
           </li>
-        ))}
+        )}
+        {/** CURRENT PAGES */}
+        {pageNumbers.map((number, index) =>
+          index === props.idHighlight - 1 ? (
+            <li key={number} className="page-item">
+              <a
+                onClick={() => props.trigger(number)}
+                href="/#"
+                className="page-link hightlited-page"
+              >
+                {number}
+              </a>
+            </li>
+          ) : (
+            <li key={number} className="page-item">
+              <a
+                onClick={() => props.trigger(number)}
+                href="/#"
+                className="page-link"
+              >
+                {number}
+              </a>
+            </li>
+          )
+        )}
+        {/** NEXT PAGE */}
+        <li key={end + 1} className="page-item">
+          <a
+            onClick={() => {
+              props.mainTrigger(1);
+            }}
+            href="/#"
+            className="page-link"
+          >
+            {end + 1}
+          </a>
+        </li>
       </ul>
     </nav>
   );

@@ -1,3 +1,4 @@
+// Packages
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 // Interfaces
@@ -9,45 +10,82 @@ import CardCollection from "./CardCollection";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
 
-function App() {
-  const [showsData, setShows] = useState<ShowI[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [showsPerPage] = useState<number>(20);
-  const [ApiPage, setApiPage] = useState<number>(0);
+const showsPerPage = 50; // Количество на странице
 
+function App() {
+  // HOOKS
+  const [ApiData, setApiData] = useState<ShowI[]>([]); // Все данные с АПИ
+  const [loading, setLoading] = useState<boolean>(false); // Состояние загрузки
+  const [ApiPage, setApiPage] = useState<number>(0); // Страница в АПИ
+  const [UserPage, setUserPage] = useState<number>(1); // Страница пользователя
+  const [addition, setAddition] = useState<number>(0); // Добавочное число к страницам
+
+  // VARIABLES
+  const URL = `https://api.tvmaze.com/shows?page=${ApiPage}`;
+  const firstIndex = UserPage * showsPerPage - showsPerPage;
+  const lastIndex = UserPage * showsPerPage;
+  const UserData = ApiData.slice(firstIndex, lastIndex);
+
+  // FUNCTIONS
+
+  /**
+   * Get Data
+   * */
   useEffect(() => {
     const fetchShows = async () => {
       setLoading(true);
-      const res: AxiosResponse<ShowI[]> = await axios.get<ShowI[]>(
-        "https://api.tvmaze.com/shows?page=" + ApiPage
-      );
-      setShows(res.data);
+      const res: AxiosResponse<ShowI[]> = await axios.get<ShowI[]>(URL);
+      setApiData(res.data);
       setLoading(false);
     };
-
     fetchShows();
-  }, []);
+  }, [URL, ApiPage]);
 
-  // Get current shows
-  const indexOfLastShow = currentPage * showsPerPage;
-  const indexOfFirstShow = indexOfLastShow - showsPerPage;
-  const currentShows = showsData.slice(indexOfFirstShow, indexOfLastShow);
+  /**
+   * Change UserPage
+   * */
+  function paginate(page: number) {
+    if (page > 5) {
+      do {
+        page = page - 5;
+      } while (page > 5);
+    }
+    setUserPage(page);
+  }
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  /**
+   * Change ApiPage
+   * */
+  function paginateApi(page: number) {
+    setApiData([]); // Очистка данных
+    setApiPage(ApiPage + page); // Переключение страницы в API
+    // Обработка данных для страницы
+    if (page === -1) {
+      setAddition(addition - 5);
+      setUserPage(5);
+    }
+    if (page === 1) {
+      setAddition(addition + 5);
+      setUserPage(1);
+    }
+  }
+
+  // RETURN
 
   return (
     <div>
       <Header />
       <Title />
-      <CardCollection showsData={currentShows} loading={loading} />
+      <CardCollection data={UserData} loadingStatus={loading} />
       <Pagination
-        showsPerPage={showsPerPage}
-        totalShows={showsData.length}
-        paginate={paginate}
+        itemsPerPage={showsPerPage}
+        totalItems={ApiData.length}
+        trigger={paginate}
+        mainTrigger={paginateApi}
+        addition={addition}
+        idHighlight={UserPage}
       />
-      <Footer loading={loading} />
+      <Footer loadingStatus={loading} />
     </div>
   );
 }
