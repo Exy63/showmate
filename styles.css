@@ -288,3 +288,14 @@ footer p {
 .footer-logo {
   width: 40px;
 }
+
+/*
+* fonts
+*/
+
+@font-face {
+  font-family: 'McLaren';
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/McLaren-Regular.ttf');
+}
