@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 const Pagination = (props: {
   itemsPerPage: number;
   totalItems: number;
@@ -28,7 +27,7 @@ const Pagination = (props: {
           <li key={start - 1} className="page-item">
             <a
               onClick={() => props.mainTrigger(-1)}
-              href="#"
+              href="/#"
               className="page-link"
             >
               {start - 1}
@@ -41,7 +40,7 @@ const Pagination = (props: {
             <li key={number} className="page-item">
               <a
                 onClick={() => props.trigger(number)}
-                href="#"
+                href="/#"
                 className="page-link hightlited-page"
               >
                 {number}
@@ -51,7 +50,7 @@ const Pagination = (props: {
             <li key={number} className="page-item">
               <a
                 onClick={() => props.trigger(number)}
-                href="#"
+                href="/#"
                 className="page-link"
               >
                 {number}
@@ -65,7 +64,7 @@ const Pagination = (props: {
             onClick={() => {
               props.mainTrigger(1);
             }}
-            href="#"
+            href="/#"
             className="page-link"
           >
             {end + 1}
