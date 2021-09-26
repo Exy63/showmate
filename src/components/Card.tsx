@@ -1,4 +1,5 @@
 function Card(props: {
+  key? :number;
   image: string;
   name: string;
   genres: string[];
