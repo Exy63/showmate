@@ -27,7 +27,7 @@ const Pagination = (props: {
           <li key={start - 1} className="page-item">
             <a
               onClick={() => props.mainTrigger(-1)}
-              href="/#"
+              href="/showmate/#"
               className="page-link"
             >
               {start - 1}
@@ -40,7 +40,7 @@ const Pagination = (props: {
             <li key={number} className="page-item">
               <a
                 onClick={() => props.trigger(number)}
-                href="/#"
+                href="/showmate/#"
                 className="page-link hightlited-page"
               >
                 {number}
@@ -50,7 +50,7 @@ const Pagination = (props: {
             <li key={number} className="page-item">
               <a
                 onClick={() => props.trigger(number)}
-                href="/#"
+                href="/showmate/#"
                 className="page-link"
               >
                 {number}
@@ -64,7 +64,7 @@ const Pagination = (props: {
             onClick={() => {
               props.mainTrigger(1);
             }}
-            href="/#"
+            href="/showmate/#"
             className="page-link"
           >
             {end + 1}
